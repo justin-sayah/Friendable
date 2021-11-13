@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from faker import Faker
-from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import KMeans
 x = []
 y = []
 z = []
@@ -29,10 +29,17 @@ for _ in range(300):
   aliens.append(np.random.randint(3))
 
 
+
 data = {"Name":names,"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
  "Hotdog":hotdog, "Sleep": sleep, "Ice Cream": ice_cream, "Messy": messy, "Aliens":aliens}
 df = pd.DataFrame(data)
 
+kmeans = KMeans(n_clusters=15, random_state=0).fit(df.iloc[:, 1:10])
+labels = kmeans.labels_
+
+df["Classes"] = pd.Series(labels)
+
+print(labels)
 # neigh = AgglomerativeClustering(n_neighbors=3)
 # clustering = AgglomerativeClustering().fit(data)
 df.to_csv("fake_people.csv")
