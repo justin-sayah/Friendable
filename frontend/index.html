@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Friendable | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+</head>
+
+<body style="background-color:#93AFD6" onload="document.body.style.opacity='1'">
+    <div class="header" style="color: white">Friendable</div>
+
+    <div class="instro--parent">
+        <div class="instro">enter your phone number to get started:</div>
+    </div>
+    <form id="login" onsubmit="process(event)" style="text-align: center; margin-top: 2%;">
+        <input id="phone" type="tel" name="phone" style="display: inline-block" class="fon3" autofocus required/>
+        <input type="submit" value="Submit" style="display: inline-block" class="subm1t" />
+    </form>
+
+    <div class="footer">
+        <p class="motto" style="margin-top:12px;letter-spacing:2px;">"an information based, no strings attached way to
+            meet new people"
+        </p>
+    </div>
+
+</body>
+
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    const info = document.querySelector(".alert-info");
+
+    function process(event) {
+        event.preventDefault();
+
+        const phoneNumber = phoneInput.getNumber();
+        // ^^ pass this to twilio
+    }
+</script>
+
+</html>
