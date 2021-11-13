@@ -29,13 +29,13 @@ for _ in range(300):
   aliens.append(np.random.randint(3))
 
 
-data = {"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
+data = {"Name":names,"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
  "Hotdog":hotdog, "Sleep": sleep, "Ice Cream": ice_cream, "Messy": messy, "Aliens":aliens}
 df = pd.DataFrame(data)
 
 # neigh = AgglomerativeClustering(n_neighbors=3)
 # clustering = AgglomerativeClustering().fit(data)
-
+df.to_csv("fake_people.csv")
 
 print(df)
 
