@@ -6,7 +6,7 @@ import yaml
 
 
 def send_message(messageToSend, toNum=None):
-    
+    print('sending message')
     
     creds = yaml.safe_load(open("creds.yaml", "r"))
     account_sid = creds['ACCOUNT_SID']
@@ -16,7 +16,7 @@ def send_message(messageToSend, toNum=None):
     fromNum = creds['from']
 
     message = client.messages.create(
-            body=messageToSend,
+            body='Your verification code for Friendable is ' + str(messageToSend),
             from_=fromNum,
             to=toNum,
         )
