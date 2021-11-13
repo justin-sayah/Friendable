@@ -29,7 +29,7 @@ for _ in range(300):
   aliens.append(np.random.randint(3))
 
 
-data = {"Extrovert - Introvert": x, "Sensing - Intuition": y, "Thinking - Feeling": z, "Judging - Perceiving": w, "Cereal": cereal,
+data = {"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
  "Hotdog":hotdog, "Sleep": sleep, "Ice Cream": ice_cream, "Messy": messy, "Aliens":aliens}
 df = pd.DataFrame(data)
 
