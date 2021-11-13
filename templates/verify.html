@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <link href="/static/styles.css" rel="stylesheet" type="text/css">
+    <link href="styles.css" rel="stylesheet" type="text/css">
     <title>Friendable | Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +16,10 @@
     <div class="header" style="color: white">Friendable</div>
 
     <div class="instro--parent">
-        <div class="instro">enter your phone number to get started:</div>
+        <div class="instro">please enter your verification code:</div>
     </div>
-    <form id="login" onsubmit="process(event)" style="text-align: center; margin-top: 2%;" method="POST">
-        <input id="phone" type="tel" name="phone" style="display: inline-block" class="fon3" autofocus required/>
+    <form id="login" onsubmit="process(event)" style="text-align: center; margin-top: 2%;">
+        <input id="code" type="text" style="display: inline-block" class="fon3" autofocus required />
         <input type="submit" value="Submit" style="display: inline-block" class="subm1t" />
     </form>
 
@@ -32,25 +32,12 @@
 </body>
 
 <script>
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-
-    const info = document.querySelector(".alert-info");
+    const codeInputField = document.querySelector("#code");
 
     function process(event) {
         event.preventDefault();
 
-        const phoneNumber = phoneInput.getNumber();
-        console.log(phoneNumber)
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/sign_in', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-            number: phoneNumber
-        }));
-        // ^^ pass this to twilio
+        const codeNumber = codeInputField
     }
 </script>
 
