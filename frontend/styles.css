@@ -106,3 +106,21 @@ body {
     color: #ffffff;
     cursor: pointer;
 }
+
+.question {
+    font-family: 'Righteous', cursive;
+    font-size: 20px;
+    color: #ffffff;
+    width: 60%;
+    display: inline-block;
+}
+
+.slider {
+    color: #ffffff;
+    width: 85%;
+    margin-top: 2%;
+    background-color: red;
+}
+
+
+
