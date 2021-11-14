@@ -41,9 +41,26 @@
 
         <div
             style="width: 80%;min-width: 1000px;display: inline-block; border-radius: 5px; border: solid 2px white;background-color: #7992b4; margin-top: 4%;">
-            <div class="results--containers">here's this weeks proposed activity</div>
+            <div class="results--containers" style="margin-top: 1%;">here's this weeks proposed activity</div>
 
-            <div class="results--containers">Attending?</div>
+            <hr style="color:white;width:100%;">
+
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 50%;">
+                            <img src="../static/place.jpeg" class="spot--photo">
+                        </td>
+                        <td class="results--containers" style="font-size: 18px;margin-top: 5%;text-align: left;">
+                            <div style="margin-top: 2%;">The Spot: {{TITLE}}</div>
+                            <div style="margin-top: 2%;">Location: {{ADDRESS}}</div>
+                            <div style="margin-top: 2%;">When: Saturday @ 1:00 PM GMT+5</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr style="color:white;width:100%;">
             <div>
                 {% if status=='maybe' %}
                 <form id="accept" method='POST' action="/going" >

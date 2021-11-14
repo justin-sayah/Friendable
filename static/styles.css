@@ -198,3 +198,21 @@ body {
     font-family: 'Righteous', cursive;
     font-size: 40px;
 }
+
+.spot--photo {
+    height: 180px;
+    width:320px;
+    border: 2px white solid;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+.spot--wrapper {
+    font-family: 'Righteous', cursive;
+    font-size: 20px;
+    color: #ffffff;
+    display: table;
+    align-items: center;
+    justify-content: center
+}
