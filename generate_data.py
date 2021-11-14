@@ -36,7 +36,7 @@ data = {"Name":names,"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
  "Hotdog":hotdog, "Sleep": sleep, "IceCream": ice_cream, "Messy": messy, "Aliens":aliens}
 df = pd.DataFrame(data)
 
-kmeans = KMeans(n_clusters=30, random_state=0).fit(df.iloc[:, 1:10])
+kmeans = KMeans(n_clusters=30, random_state=0).fit(df.iloc[:, 1:11])
 dump(kmeans, 'kmeans_model.joblib') 
 labels = kmeans.labels_
 
@@ -49,7 +49,7 @@ df.to_csv("fake_people.csv", index = False)
 
 print(df)
 
-test = np.array([2.5,6.4, 7.7, 1.1,0,0, 0, 0, 0])
+test = np.array([2.5,6.4, 9.7, 2.1,0,0, 1, 0, 0,1])
 test.reshape(-1,1)
 prediction = kmeans.predict([test])
 
