@@ -8,7 +8,10 @@ from flask import jsonify
 from random import randint
 
 
-
+def verify_phone(num):
+    import re
+    regex = re.compile(r'^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
+    return regex.search(str(num))
 
 app = Flask(__name__)
 cred = credentials.Certificate("google_auth_creds.json")
@@ -31,7 +34,12 @@ def sign_in():
         # Do stuff here
         print('in here')
         ret = request.get_json()
+
         number = ret['number']
+
+        if not verify_phone(number):
+            return render_template('index.html', message="Please enter a valid phone number.")
+            
         # Check to see if the number is in the data base
         docs = users.where(u'number', u'==', '5').stream()
         print(number)

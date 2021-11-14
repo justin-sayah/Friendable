@@ -40,12 +40,6 @@ body {
     background: none;
 }
 
-.time--till {
-    text-align: center;
-    font-family: 'Righteous', cursive;
-    font-size: 40px;
-}
-
 .motto {
     font-family: 'Righteous', cursive;
     font-size: 12px;
@@ -113,6 +107,7 @@ body {
     color: #ffffff;
     width: 60%;
     display: inline-block;
+    margin-top: 5%;
 }
 
 .slider {
@@ -122,5 +117,11 @@ body {
     background-color: red;
 }
 
-
-
+.welcome {
+    font-family: 'Righteous', cursive;
+    font-size: 60px;
+    color: #ffffff;
+    margin: 1%;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #4F4F4F;
+}
