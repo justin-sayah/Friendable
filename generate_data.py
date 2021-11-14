@@ -15,7 +15,7 @@ aliens = []
 
 names = []
 fake = Faker()
-for _ in range(300):
+for _ in range(1500):
   names.append(fake.name())
   x.append(np.round(np.random.uniform(1, 10),2))
   y.append(np.round(np.random.uniform(1, 10),2))
@@ -31,10 +31,10 @@ for _ in range(300):
 
 
 data = {"Name":names,"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
- "Hotdog":hotdog, "Sleep": sleep, "Ice Cream": ice_cream, "Messy": messy, "Aliens":aliens}
+ "Hotdog":hotdog, "Sleep": sleep, "IceCream": ice_cream, "Messy": messy, "Aliens":aliens}
 df = pd.DataFrame(data)
 
-kmeans = KMeans(n_clusters=15, random_state=0).fit(df.iloc[:, 1:10])
+kmeans = KMeans(n_clusters=30, random_state=0).fit(df.iloc[:, 1:10])
 labels = kmeans.labels_
 
 df["Classes"] = pd.Series(labels)
@@ -42,7 +42,7 @@ df["Classes"] = pd.Series(labels)
 print(labels)
 # neigh = AgglomerativeClustering(n_neighbors=3)
 # clustering = AgglomerativeClustering().fit(data)
-df.to_csv("fake_people.csv")
+df.to_csv("fake_people.csv", index = False)
 
 print(df)
 
