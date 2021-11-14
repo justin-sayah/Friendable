@@ -125,3 +125,70 @@ body {
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #4F4F4F;
 }
+
+.results--containers {
+    font-family: 'Righteous', cursive;
+    font-size: 20px;
+    color: #ffffff;
+    display: inline-block;
+    width: 100%;
+}
+
+.yes {
+	background: #16751e;
+	border-bottom: 6px inset rgba(0,0,0,.5);
+	border-left: 6px inset rgba(0,0,0,.5);
+	border-right: 6px inset rgba(255,255,255,.5);
+	border-top: 6px inset rgba(255,255,255,.5);
+	box-sizing: border-box;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1rem;
+	margin: 20px;
+	margin-top: 5px;
+	padding: .1rem;
+	text-transform: uppercase;
+	width: 120px;
+    font-family: 'Righteous', cursive;
+}
+
+.yes:hover {
+	background: #06a01a;
+}
+
+.no {
+    background: #a40000;
+	border-bottom: 6px inset rgba(0,0,0,.5);
+	border-left: 6px inset rgba(0,0,0,.5);
+	border-right: 6px inset rgba(255,255,255,.5);
+	border-top: 6px inset rgba(255,255,255,.5);
+	box-sizing: border-box;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1rem;
+	margin: 20px;
+	margin-top: 5px;
+	padding: .1rem;
+	text-transform: uppercase;
+	width: 120px;
+    font-family: 'Righteous', cursive;
+}
+
+.no:hover {
+	background: #be0000;
+}
+
+.photo  {
+    width: 15%;
+    height: 15%;
+    margin-top: 2%;
+    border: solid 1px white;
+    border-radius: 5px;
+}
+
+.person {
+    width: 5%;
+    height: 100%;
+}
