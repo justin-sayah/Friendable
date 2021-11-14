@@ -18,10 +18,13 @@
     <div class="instro--parent">
         <div class="instro">enter your phone number to get started:</div>
     </div>
-    <form id="login" onsubmit="process(event)" style="text-align: center; margin-top: 2%;" method="POST">
+    <form id="login" action="/sign_in" style="text-align: center; margin-top: 2%;" method="POST">
         <input id="phone" type="tel" name="phone" style="display: inline-block" class="fon3" autofocus required/>
         <input type="submit" value="Submit" style="display: inline-block" class="subm1t" />
     </form>
+    <div class="instro--parent">
+        <div class="instro">{{ message }}</div>
+    </div>
 
     <div class="footer">
         <p class="motto" style="margin-top:12px;letter-spacing:2px;">"an information based, no strings attached way to
