@@ -45,8 +45,16 @@
 
             <div class="results--containers">Attending?</div>
             <div>
-                <button class="yes">Yes</button>
-                <button class="no">No</button>
+                <form id="accept" method='POST' action="/going" >
+                    <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True/>
+                    <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
+                    <button class="yes">Yes</button>
+                </form>
+                <form id="not_going" method='POST' action="/not_going" >
+                    <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True/>
+                    <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
+                    <button class="no">No</button>
+                </form>
             </div>
         </div>
 

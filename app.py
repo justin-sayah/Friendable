@@ -199,6 +199,7 @@ def get_group(num):
 
     print('the user is ' + str(user))
     name = user['name']
+    pnum = user['number']
 
     group = get_group_object(num)
 
@@ -228,6 +229,8 @@ def get_group(num):
     activity = group['activity']
     activity = activies.document(activity).get().to_dict()
 
+    group_id = group['group_id']
+
     print('other people')
     print(other_people)
     print('activity')
@@ -236,9 +239,9 @@ def get_group(num):
     if activity['type'] == 'place':
         #make the api call
         obj = img.open(io.BytesIO(requests.get(activity['api_call']).content))
-        obj.save('../static/place.jpeg')
+        obj.save('./static/place.jpeg')
     
-    return render_template('results.html', name=name, person=user, other_people=other_people, activity=activity)
+    return render_template('results.html', name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
 
 @app.route('/test_show_person', methods=['GET'])
 def test_show_person():
@@ -246,7 +249,38 @@ def test_show_person():
 
 @app.route('/going', methods=['POST'])
 def going():
-    group = request.values['group_id']
-    number = request.values['number']
+    print('in the going function')
+    group_id = request.values['group_id']
+    number = request.values['pnum']
+
+    #get the group
+    group = groups.document(group_id).get().to_dict()
+    print('type')
+    print(group['confirmed'])
+    (group['confirmed']).append(number)
+
+    print(group)
+    groups.document(group_id).set(group)
+
+    return get_group(number)
+
+@app.route('/not_going', methods=['POST'])
+def not_going():
+    print('in the not_going function')
+    group_id = request.values['group_id']
+    number = request.values['pnum']
+
+    #get the group
+    group = groups.document(group_id).get().to_dict()
+    # print('type')
+    # print(group['confirmed'])
+    (group['not_going']).append(number)
+
+    # print(group)
+    groups.document(group_id).set(group)
+
+    return get_group(number)
+
+
 
     

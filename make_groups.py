@@ -90,6 +90,7 @@ def create_group(current_group, group_index, class_num):
     dict['people'] = current_group #need to be references to the collection
     dict['confirmed'] = []
     dict['not_going'] = []
+    dict['group_id'] = str(group_index) + str(class_num)
     dict['activity'] = activity #need to be an activity
 
     # print(dict)
