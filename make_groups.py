@@ -84,5 +84,5 @@ def create_group(current_group, group_index):
 
     groups.document(str(group_index)).set(dict)
 
-make_groups()
+# make_groups()
 # get_group('5057216157')
