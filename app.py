@@ -13,6 +13,7 @@ from werkzeug.datastructures import ImmutableMultiDict
 from make_groups import get_group_object
 import requests, io, base64, cv2
 import PIL.Image as img
+from generate_human import make_human
 
 
 
@@ -298,6 +299,12 @@ def not_going():
     groups.document(group_id).set(group)
 
     return get_group(number)
+
+@app.route('/human_maker')
+def create():
+    print('making random avatars')
+    for i in range(1,6):
+        make_human(i)
 
 
 
