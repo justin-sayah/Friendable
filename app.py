@@ -8,15 +8,21 @@ from flask import jsonify
 from random import randint
 from get_predictions import get_prediction
 from werkzeug.datastructures import ImmutableMultiDict
+from make_groups import get_group_object
+import requests, io, base64, cv2
+import PIL.Image as img
 
 
 
 app = Flask(__name__)
-cred = credentials.Certificate("google_auth_creds.json")
-initialize_app(cred)
+# cred = credentials.Certificate("google_auth_creds.json")
+# initialize_app(cred)
 db = firestore.client()
 users = db.collection('users')  
 temp_codes = db.collection('temp_codes')
+activies = db.collection('activies')
+groups = db.collection('group')
+
 
 @app.route('/')
 def test():
@@ -66,12 +72,14 @@ def sign_in():
 
 
         user = users.document(number).get()
-        print(user)
-        exists = user != None
+        # print('PRINTING THE USER')
+        # print(user.to_dict())
+        user = user.to_dict()
+        # print(user == None)
 
         # exists = False
-        print('exists')
-        print(exists)
+        # print('exists')
+        # print(exists)
 
         # need to verify number either way
 
@@ -82,7 +90,7 @@ def sign_in():
         new_temp = Temp(number, ran_num)
 
 
-        if exists:
+        if user != None:
             print('sending message')
             # gen random number
 
@@ -136,7 +144,8 @@ def verify():
         else:
             print('is not a new user')
             # return whatever page we show people who already 
-            return render_template('results.html') #will need to give it more info
+            # return render_template('results.html') #will need to give it more 0
+            get_group(number)
 
     else:
         print('actual code')
@@ -172,11 +181,69 @@ def survey():
 
     print('inserted into database')
 
-    return render_template('results.html') #will probably make into a method
-
+    # return render_template('results.html') #will probably make into a method
+    get_group(number)
 
 def verify_phone(num):
     print('calling the verify method')
     import re
     regex = re.compile(r'^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
     return regex.search(str(num))
+
+def get_group(num):
+
+    print('getting a group for ' + str(num))
+
+    user = users.document(num).get().to_dict()
+
+    print('the user is ' + str(user))
+
+    group = get_group_object(num)
+    
+
+    print('Group')
+    print(group)
+
+    #get the people in the group
+
+    people = group['people']
+
+    other_people = []
+
+    for person in people:
+        if person != num:
+            user = users.document(person).get().to_dict()
+            if person in group['confirmed']:
+                user['status'] = 'yes'
+            elif person in group['not_going']:
+                user['status'] = 'no'
+            else:
+                user['status'] = 'maybe'
+
+            other_people.append(user)
+
+    activity = group['activity']
+    activity = activies.document(activity).get().to_dict()
+
+    print('other people')
+    print(other_people)
+    print('activity')
+    print(activity)
+
+    if activity['type'] == 'place':
+        #make the api call
+        obj = img.open(io.BytesIO(requests.get(activity['api_call']).content))
+        obj.save('../static/place.jpeg')
+    
+    return render_template('results.html', person=user, other_people=other_people, activity=activity)
+
+@app.route('/test_show_person', methods=['GET'])
+def test_show_person():
+    return render_template('test_show_person.html')
+
+@app.route('/going', methods=['POST'])
+def going():
+    group = request.values['group_id']
+    number = request.values['number']
+
+    
