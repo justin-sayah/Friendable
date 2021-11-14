@@ -192,3 +192,9 @@ body {
     width: 5%;
     height: 100%;
 }
+
+.time--till {
+    text-align: center;
+    font-family: 'Righteous', cursive;
+    font-size: 40px;
+}
