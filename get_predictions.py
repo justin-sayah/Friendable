@@ -14,29 +14,30 @@ def get_prediction(value_dict):
     preprocessed = preprocessed[2:]
     
     processed = []
-
+    sum = 0
     for i in range(3):
-        sum = 0
         sum += int(preprocessed[i])
-        processed.append(sum/3)
+    processed.append(sum/3)
+    sum = 0
     for i in range(3,6):
-        sum = 0
         sum += int(preprocessed[i])
-        processed.append(sum/3)
+    processed.append(sum/3)
+    sum = 0
     for i in range(6,9):
-        sum = 0
         sum += int(preprocessed[i])
-        processed.append(sum/3)
+    processed.append(sum/3)
+    sum = 0
     for i in range(9,12):
-        sum = 0
         sum += int(preprocessed[i])
-        processed.append(sum/3)
+    processed.append(sum/3)
 
-    for i in range(13,19):
+    for i in range(12,18):
         processed.append(int(preprocessed[i]))
     
     kmeans = load('kmeans_model.joblib')
     test = np.array(processed)
+    print('processed')
+    print(processed)
     test.reshape(-1,1)
     prediction = kmeans.predict([test])
 

@@ -6,7 +6,8 @@ from Temp import Temp
 from User import User
 from flask import jsonify
 from random import randint
-import get_predictions
+from get_predictions import get_prediction
+from werkzeug.datastructures import ImmutableMultiDict
 
 
 
@@ -148,11 +149,16 @@ def survey():
     print(request.values)
     number = request.values['number']
 
-    process_data(request.values)
+    label = get_prediction(request.values)
+
+    print(label)
+
+    dict = request.values.to_dict(flat=False)
+    dict['Classes'] = label
 
     # now put the values in the database
 
-    users.document(number).set(request.values)
+    users.document(number).set(dict)
 
     print('inserted into database')
 
