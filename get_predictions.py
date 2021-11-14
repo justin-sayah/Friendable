@@ -32,9 +32,11 @@ def get_prediction(value_dict):
         sum += int(preprocessed[i])
         processed.append(sum/3)
 
-    for i in range(13,19):
+    for i in range(12,18):
         processed.append(int(preprocessed[i]))
     
+    #['7', '3', '9', '2', '8', '8', '8', '8', '8', '3', '6', '6', '1', '1', '1', '1', '0', '0']
+
     kmeans = load('kmeans_model.joblib')
     test = np.array(processed)
     test.reshape(-1,1)
