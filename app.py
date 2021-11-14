@@ -215,6 +215,8 @@ def get_group(num):
     people = group['people']
 
     other_people = []
+    other_people_status = []
+    other_people_names = []
 
     for person in people:
         if person != num:
@@ -225,6 +227,8 @@ def get_group(num):
                 user['status'] = 'no'
             else:
                 user['status'] = 'maybe'
+            other_people_status.append(user['status'])
+            other_people_names.append(user['Name'])
 
             other_people.append(user)
 
@@ -255,7 +259,7 @@ def get_group(num):
         loc_name = activity['name']
         address = activity['address'][0]
     
-    return render_template('results.html', loc_name=loc_name,address=address, status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
+    return render_template('results.html', other_people_status=other_people_status, other_people_names=other_people_names, loc_name=loc_name,address=address, status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
 
 @app.route('/test_show_person', methods=['GET'])
 def test_show_person():
