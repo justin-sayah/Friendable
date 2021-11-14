@@ -17,7 +17,7 @@ aliens = []
 
 names = []
 fake = Faker()
-for _ in range(1500):
+for _ in range(200):
   names.append(fake.name())
   x.append(np.round(np.random.uniform(1, 10),2))
   y.append(np.round(np.random.uniform(1, 10),2))
@@ -36,7 +36,7 @@ data = {"Name":names,"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
  "Hotdog":hotdog, "Sleep": sleep, "IceCream": ice_cream, "Messy": messy, "Aliens":aliens}
 df = pd.DataFrame(data)
 
-kmeans = KMeans(n_clusters=30, random_state=0).fit(df.iloc[:, 1:11])
+kmeans = KMeans(n_clusters=10, random_state=0).fit(df.iloc[:, 1:11])
 dump(kmeans, 'kmeans_model.joblib') 
 labels = kmeans.labels_
 
