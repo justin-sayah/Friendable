@@ -154,7 +154,7 @@ def survey():
     print(label)
 
     dict = request.values.to_dict(flat=False)
-    dict['Classes'] = label
+    dict['Classes'] = int(label)    
 
     # now put the values in the database
 
