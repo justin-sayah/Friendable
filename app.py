@@ -53,20 +53,25 @@ def sign_in():
 
 
         # Check to see if the number is in the data base
-        docs = users.where(u'number', u'==', '5').stream()
-        print(number)
+        # docs = users.where(u'number', u'==', '5').stream()
+        # print(number)
 
-        size = 0
-        for doc in docs:
-            if size > 0:
-                print('something is wrong')
-            else:
-                size += 1
-                # maybe unpack some things about the user
+        # size = 0
+        # for doc in docs:
+        #     if size > 0:
+        #         print('something is wrong')
+        #     else:
+        #         size += 1
+        #         # maybe unpack some things about the user
 
-        exists = size == 1
 
-        exists = False
+        user = users.document(number).get()
+        print(user)
+        exists = user != None
+
+        # exists = False
+        print('exists')
+        print(exists)
 
         # need to verify number either way
 
@@ -82,7 +87,7 @@ def sign_in():
             # gen random number
 
             
-            send_message(ran_num, toNum=number[2:])
+            send_message(ran_num, toNum=number)
             # update random number in the database
             # print('created new temp')
             # print(number[2:])
@@ -117,17 +122,21 @@ def verify():
     print('the number is')
     print(number)
 
+    print('is a new user')
+    print(new)
+
     temp_ret = temp_codes.document(number).get().to_dict()
     actual_num = temp_ret['number']
 
     if str(actual_num) == str(code):
         print('it worked')
-        if new:
+        if new == 'True':
             # return form
             return render_template('survey.html', pnum=number)
         else:
+            print('is not a new user')
             # return whatever page we show people who already 
-            return render_template('sign_in.html') #this is just a placeholder
+            return render_template('results.html') #will need to give it more info
 
     else:
         print('actual code')
@@ -162,6 +171,8 @@ def survey():
     users.document(number).set(dict)
 
     print('inserted into database')
+
+    return render_template('results.html') #will probably make into a method
 
 
 def verify_phone(num):
