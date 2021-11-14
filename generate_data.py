@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 from faker import Faker
 from sklearn.cluster import KMeans
+from joblib import dump, load
+
 x = []
 y = []
 z = []
@@ -35,6 +37,7 @@ data = {"Name":names,"EF": x, "SI": y, "TF": z, "JP": w, "Cereal": cereal,
 df = pd.DataFrame(data)
 
 kmeans = KMeans(n_clusters=30, random_state=0).fit(df.iloc[:, 1:10])
+dump(kmeans, 'kmeans_model.joblib') 
 labels = kmeans.labels_
 
 df["Classes"] = pd.Series(labels)
@@ -46,3 +49,8 @@ df.to_csv("fake_people.csv", index = False)
 
 print(df)
 
+test = np.array([2.5,6.4, 7.7, 1.1,0,0, 0, 0, 0])
+test.reshape(-1,1)
+prediction = kmeans.predict([test])
+
+print(prediction)

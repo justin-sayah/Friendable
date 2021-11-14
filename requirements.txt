@@ -45,3 +45,5 @@ numpy
 pandas
 Faker
 sklearn
+google-cloud-aiplatform
+joblib
