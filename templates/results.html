@@ -20,27 +20,45 @@
     <div style="text-align: center;margin-top: 2%;">
         <div
             style="width: 80%;min-width: 1000px;display: inline-block; border-radius: 5px; border: solid 2px white;background-color: #7992b4;margin-top:2%;">
-            <span class="person">
-                hi
-                <img src="../gen_human.jpeg" class="photo">
-            </span>
-            <span class="person">
-                <img src="../gen_human.jpeg" class="photo">
-            </span>
-            <span class="person">
-                <img src="../gen_human.jpeg" class="photo">
-            </span>
-            <span class="person">
-                <img src="../gen_human.jpeg" class="photo">
-            </span>
-            <span class="person">
-                <img src="../gen_human.jpeg" class="photo">
-            </span>
-            <div class="results--containers">let's meet some new faces</div>
+
+            <div class="results--containers" style="margin-top: 1%;">let's meet some new faces</div>
+            <hr style="color:white;width:100%;">
+
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="ppl--details">{NAME}</div>
+                            <img class="headshots" src="../static/gen_human.jpeg" alt="human_1">
+                            <div class="ppl--details">{ATTENDING}</div>
+                        </td>
+                        <td>
+                            <div class="ppl--details">{NAME}</div>
+                            <img class="headshots" src="../static/gen_human.jpeg" alt="human_1">
+                            <div class="ppl--details">{ATTENDING}</div>
+                        </td>
+                        <td>
+                            <div class="ppl--details">{NAME}</div>
+                            <img class="headshots" src="../static/gen_human.jpeg" alt="human_1">
+                            <div class="ppl--details">{ATTENDING}</div>
+                        </td>
+                        <td>
+                            <div class="ppl--details">{NAME}</div>
+                            <img class="headshots" src="../static/gen_human.jpeg" alt="human_1">
+                            <div class="ppl--details">{ATTENDING}</div>
+                        </td>
+                        <td>
+                            <div class="ppl--details">{NAME}</div>
+                            <img class="headshots" src="../static/gen_human.jpeg" alt="human_1">
+                            <div class="ppl--details">{ATTENDING}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div
-            style="width: 80%;min-width: 1000px;display: inline-block; border-radius: 5px; border: solid 2px white;background-color: #7992b4; margin-top: 4%;">
+            style="width: 80%;min-width: 1000px;display: inline-block; border-radius: 5px; border: solid 2px white;background-color: #7992b4; margin-top: 4%;margin-bottom: 10%;">
             <div class="results--containers" style="margin-top: 1%;">here's this weeks proposed activity</div>
 
             <hr style="color:white;width:100%;">
@@ -63,14 +81,14 @@
             <hr style="color:white;width:100%;">
             <div>
                 {% if status=='maybe' %}
-                <form id="accept" method='POST' action="/going" >
-                    <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True/>
-                    <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
+                <form id="accept" method='POST' action="/going">
+                    <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True />
+                    <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True />
                     <button class="yes">Yes</button>
                 </form>
-                <form id="not_going" method='POST' action="/not_going" >
-                    <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True/>
-                    <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
+                <form id="not_going" method='POST' action="/not_going">
+                    <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True />
+                    <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True />
                     <button class="no">No</button>
                 </form>
                 {% elif status=='going' %}

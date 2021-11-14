@@ -216,3 +216,16 @@ body {
     align-items: center;
     justify-content: center
 }
+
+.ppl--details {
+    font-family: 'Righteous', cursive;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.headshots {
+    width: 180px;
+    height: 180px;
+    border: solid 2px white;
+    border-radius: 5px;
+}
