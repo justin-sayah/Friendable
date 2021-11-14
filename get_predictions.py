@@ -34,6 +34,8 @@ def get_prediction(value_dict):
     for i in range(12,18):
         processed.append(int(preprocessed[i]))
     
+    #['7', '3', '9', '2', '8', '8', '8', '8', '8', '3', '6', '6', '1', '1', '1', '1', '0', '0']
+
     kmeans = load('kmeans_model.joblib')
     test = np.array(processed)
     print('processed')
