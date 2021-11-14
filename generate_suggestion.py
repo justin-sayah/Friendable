@@ -1,7 +1,11 @@
+from flask.globals import request
 from serpapi import GoogleSearch
 import yaml, random, googlemaps
 from firebase_admin import credentials, firestore, initialize_app
 import uuid
+import requests
+from PIL import Image
+from io import BytesIO
 
 cred = credentials.Certificate("google_auth_creds.json")
 initialize_app(cred)
@@ -53,7 +57,9 @@ def get_place():
     vicinity = places['results'][0]['vicinity']
     rating = places['results'][0]['rating']
     photos = places['results'][0]['photos']
-    return ['place', name, vicinity, rating, photos]
+    api_call = '''https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=''' + str(photos[0]['photo_reference']) + '''&key=''' + str(api_key)
+
+    return ['place', name, vicinity, rating, photos, api_call]
 
 
 def gen_result():
@@ -74,6 +80,7 @@ def gen_result():
         dict['vicinity'] = result[2]
         dict['rating'] = result[3]
         dict['photos'] = result[4]
+        dict['api_call'] = result[5]
 
     activies = db.collection('activies')
 
@@ -84,3 +91,5 @@ def gen_result():
     activies.document(str(id)).set(dict)
 
     return id
+
+# get_place()
