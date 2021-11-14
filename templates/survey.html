@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <link href="../static/styles.css" rel="stylesheet" type="text/css">
+    <title>Friendable | Survey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+</head>
+
+<body
+    style="text-align:center; background-color: #93AFD6;height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed;"
+    onload="document.body.style.opacity='1'">
+    <div class="welcome" style="text-align: left;">Welcome!</div>
+
+    
+    <form id="login" action="/survey" method="POST" style="margin-bottom: 8%;">
+        <input type='text' id="number" name='number' value="{{ pnum }}" hidden=True/>
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">0. What's your name?
+            </div>
+            <div>
+                <input id="q0" name='name' type="text" class="fon3" style="text-align: center;"/>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">1. How easily is it for you to walk up to someone and start a conversation?
+            </div>
+            <div>
+                <input id="q1" name='q1' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">2. You enjoy participating in group activities.</div>
+            <div>
+                <input id="q2"  name='q2' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">3. You seek out leadership opportunities in groups.</div>
+            <div>
+                <input id="q3" name='q3' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">4. When working on a project I tend to focus on the bigger picture over
+                details.</div>
+            <div>
+                <input id="q4" name='q4' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">5. You tend to remember events from your past.</div>
+            <div>
+                <input id="q5" name='q5' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">6. If you see a wishing well, you would throw in a penny and make a wish.
+            </div>
+            <div>
+                <input id="q6" name='q6' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">7. When cooking, you follow a recipe line for line.</div>
+            <div>
+                <input id="q7" name='q7' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">8. I make decisions with my head rather than my heart.</div>
+            <div>
+                <input id="q8" name='q8' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">9. When giving news, I give it bluntly instead of dressing it up.</div>
+            <div>
+                <input id="q9" name='q9' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">10. I hyperfocus on big goals and can miss some details as they come up.
+            </div>
+            <div>
+                <input id="q10" name='q10' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">11. I don’t rush to get stuff done right before a deadline.</div>
+            <div>
+                <input id="q11" name='q11' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">12. I keep lists of things I want to do instead of going with the flow.</div>
+            <div>
+                <input id="q12" name='q12' type="range" min="1" max="10" step="1" list="steplist" class="slider" />
+            </div>
+            <div style="width:100%;min-width: 800px;">
+                <p style="display:inline-block;margin-right: 32%;">1 (Least)</p>
+                <p style="display:inline-block;margin-left:32%;">(Most) 10</p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">13. Is Cereal Soup?</div>
+            <div id="q13" style="text-align: left;">
+                <p>
+                    <input name="13" type="radio" value="0">Yes</input>
+                </p>
+                <p>
+                    <input name="13" type="radio" value="1">No</input>
+                </p>
+                <p>
+                    <input name="13" type="radio" value="2">Don't ask me this</input>
+                </p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">14. Is a hotdog a sandwich?</div>
+            <div id="q14" style="text-align: left;">
+                <p>
+                    <input name="14" type="radio" value="0">Yes</input>
+                </p>
+                <p>
+                    <input name="14" type="radio" value="1">No</input>
+                </p>
+                <p>
+                    <input name="14" type="radio" value="2">Delicious either way</input>
+                </p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">15. What kind of person are you?</div>
+            <div id="q15" style="text-align: left;">
+                <p>
+                    <input name="15" type="radio" value="0">Early Bird</input>
+                </p>
+                <p>
+                    <input name="15" type="radio" value="1">Night Owl</input>
+                </p>
+                <p>
+                    <input name="15" type="radio" value="2">Blessed to just wake up</input>
+                </p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">16. How do you eat ice cream?</div>
+            <div id="q16" style="text-align: left;">
+                <p>
+                    <input name="16" type="radio" value="0">Bite</input>
+                </p>
+                <p>
+                    <input name="16" type="radio" value="1">Lick</input>
+                </p>
+                <p>
+                    <input name="16" type="radio" value="2">Other?</input>
+                </p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">17. How do you keep your room/living space?</div>
+            <div id="q17" style="text-align: left;">
+                <p>
+                    <input name="17" type="radio" value="0">Messy, but it’s my mess</input>
+                </p>
+                <p>
+                    <input name="17" type="radio" value="1">Everything must be organized and neat</input>
+                </p>
+                <p>
+                    <input name="17" type="radio" value="2">Somewhere in between</input>
+                </p>
+            </div>
+        </div>
+
+        <div class="question" style="min-width: 800px;">
+            <div style="text-align: left;">18. Do you think aliens exist?</div>
+            <div id="q18" style="text-align: left;">
+                <p>
+                    <input name="18" type="radio" value="0">Yes</input>
+                </p>
+                <p>
+                    <input name="18" type="radio" value="1">No</input>
+                </p>
+                <p>
+                    <input name="18" type="radio" value="2">Not sure</input>
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-top: 4%;">
+            <input type="submit" value="Submit" style="width:120px;display: inline-block" class="subm1t" />
+        </div>
+    </form>
+
+    <datalist id="steplist">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </datalist>
+
+
+    <div class="footer">
+        <p class="motto" style="margin-top:12px;letter-spacing:2px;">"a survey that will help us find the best people
+            for you"</p>
+    </div>
+</body>
+
+<script>
+    slider.oninput = function () {
+        if (this.value % 5 == 0) {
+            output.innerHTML = this.value;
+        }
+
+    }
+</script>
+
+</html>

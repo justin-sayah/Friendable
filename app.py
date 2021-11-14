@@ -8,10 +8,7 @@ from flask import jsonify
 from random import randint
 
 
-def verify_phone(num):
-    import re
-    regex = re.compile(r'^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
-    return regex.search(str(num))
+
 
 app = Flask(__name__)
 cred = credentials.Certificate("google_auth_creds.json")
@@ -25,21 +22,31 @@ def test():
     print('got a request here')
     return render_template("index.html")
 
-@app.route('/sign_in', methods=['GET', 'Post'])
+@app.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
     print('got a request')
     if request.method == 'GET':
-        return render_template('sign_in.html')
+        return render_template('index.html')
     else:
         # Do stuff here
         print('in here')
-        ret = request.get_json()
 
-        number = ret['number']
+        # try:
+        #     ret = request.get_json()
+        # except:
+        #     print('could not get json')
+        #     return render_template('index.html')
+        # print('got here')
+        # if ret == None:
+        #     return render_template('index.html')
 
-        if not verify_phone(number):
-            return render_template('index.html', message="Please enter a valid phone number.")
-            
+        # number = ret['number']
+
+        number = request.values.get('phone')
+        print(request.values)
+        print(number)
+
+
         # Check to see if the number is in the data base
         docs = users.where(u'number', u'==', '5').stream()
         print(number)
@@ -59,7 +66,7 @@ def sign_in():
         # need to verify number either way
 
         ran_num = 56565
-        ran_num = int(''.join(["{}".format(randint(0, 9)) for num in range(0, 5)]))
+        ran_num = int(''.join(["{}".format(randint(1, 9)) for num in range(0, 5)]))
         print(ran_num)
 
         new_temp = Temp(number, ran_num)
@@ -75,14 +82,74 @@ def sign_in():
             # print('created new temp')
             # print(number[2:])
             # print(json.dumps(new_temp.serialize()))
-            temp_ret = temp_codes.document(number[2:]).get().to_dict()
+            temp_ret = temp_codes.document(number).get().to_dict()
             temp_ret['number'] = ran_num
-            temp_codes.document(number[2:]).set(temp_ret)
+            temp_codes.document(number).set(temp_ret)
             print('updated')
             return render_template('verify.html', new=False, pnum=number)
         else:
             # going to create a new user
             print('need to verify number first')
-            send_message(ran_num, toNum=number[2:])
-            temp_codes.document(number[2:]).set(new_temp.serialize())
+            send_message(ran_num, toNum=number)
+            temp_codes.document(number).set(new_temp.serialize())
+            print('should return verify')
+            # return render_template('sign_in.html')
             return render_template('verify.html', new=True, pnum=number)
+
+
+@app.route('/verify', methods=['GET', 'Post'])
+def verify():
+    if request.method == 'GET':
+        return render_template('verify.html', new=True, pnum=6)
+
+
+    print(request.values)
+
+    new = request.values.get('new')
+    number = request.values.get('pnum')
+    code = request.values.get('code')
+
+    print('the number is')
+    print(number)
+
+    temp_ret = temp_codes.document(number).get().to_dict()
+    actual_num = temp_ret['number']
+
+    if str(actual_num) == str(code):
+        print('it worked')
+        if new:
+            # return form
+            return render_template('survey.html', pnum=number)
+        else:
+            # return whatever page we show people who already 
+            return render_template('sign_in.html') #this is just a placeholder
+
+    else:
+        print('actual code')
+        print(actual_num)
+        print('inputed code')
+        print(code)
+        print('wrong code')
+        return render_template('verify.html', new=new, pnum=number)
+
+
+
+@app.route('/survey', methods=['GET', 'Post'])
+def survey():
+
+    print('Getting survey results')
+
+    if request.method == "GET":
+        return render_template('survey.html')
+
+    
+    
+
+    print(request.values)
+    number = request.values['number']
+
+    # now put the values in the database
+
+    users.document(number).set(request.values)
+
+    print('inserted into database')

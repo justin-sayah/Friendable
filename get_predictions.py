@@ -14,3 +14,20 @@ def get_prediction(value_arr):
     test.reshape(-1,1)
     prediction = kmeans.predict([test])
     return prediction[0]
+
+def process_data(value_dict):
+    '''
+    takes in a dictionary of values and returns an array ready to get passed to get_prediction
+
+    I know I need to average
+    '''
+
+    ret = []
+    for i in range(4):
+        total = 0
+        for j in range(3):
+            name = 'q' + str(3 * i + j)
+            total += value_dict[name]
+
+        
+    
