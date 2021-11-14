@@ -145,7 +145,7 @@ def verify():
             print('is not a new user')
             # return whatever page we show people who already 
             # return render_template('results.html') #will need to give it more 0
-            get_group(number)
+            return get_group(number)
 
     else:
         print('actual code')
@@ -172,7 +172,8 @@ def survey():
 
     print(label)
 
-    dict = request.values.to_dict(flat=False)
+    dict = request.values.to_dict()
+    print(dict)
     dict['Classes'] = int(label)    
 
     # now put the values in the database
@@ -182,7 +183,7 @@ def survey():
     print('inserted into database')
 
     # return render_template('results.html') #will probably make into a method
-    get_group(number)
+    return get_group(number)
 
 def verify_phone(num):
     print('calling the verify method')
@@ -197,9 +198,11 @@ def get_group(num):
     user = users.document(num).get().to_dict()
 
     print('the user is ' + str(user))
+    name = user['name']
 
     group = get_group_object(num)
-    
+
+
 
     print('Group')
     print(group)
@@ -235,7 +238,7 @@ def get_group(num):
         obj = img.open(io.BytesIO(requests.get(activity['api_call']).content))
         obj.save('../static/place.jpeg')
     
-    return render_template('results.html', person=user, other_people=other_people, activity=activity)
+    return render_template('results.html', name=name, person=user, other_people=other_people, activity=activity)
 
 @app.route('/test_show_person', methods=['GET'])
 def test_show_person():

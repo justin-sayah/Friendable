@@ -11,9 +11,8 @@ def get_group_object(user_number):
     docs = groups.where(u'people', u'array_contains', str(user_number)).stream()
 
     #should only be one doc
-
     for doc in docs:
-        # print(doc.to_dict())
+        print(doc.to_dict())
         return doc.to_dict()
 
 
@@ -37,8 +36,8 @@ def make_groups():
         for doc in docs:
             n += 1
             doc = doc.to_dict()
-            if doc['Phone'] != None:
-                doc['number'] = doc['Phone'][2:]
+            # if doc['Phone'] != None:
+            #     doc['number'] = doc['Phone']
             # print(doc)
             # print(type(doc))
             members.append(doc)
@@ -98,4 +97,4 @@ def create_group(current_group, group_index, class_num):
     groups.document(str(group_index) + str(class_num)).set(dict)
 
 # make_groups()
-# get_group('5057216157')
+get_group_object('9788065553')
