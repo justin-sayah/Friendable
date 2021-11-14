@@ -1,6 +1,8 @@
 from firebase_admin import credentials, firestore, initialize_app
+from generate_suggestion import gen_result
+
 cred = credentials.Certificate("google_auth_creds.json")
-initialize_app(cred)
+# initialize_app(cred)
 db = firestore.client()
 
 def get_group(user_number):
@@ -66,6 +68,8 @@ def create_group(current_group, group_index):
     print('creating groups')
     #need to get an activity
 
+    activity = gen_result()
+
     # current_group = ['users/' + str(member['number']) for member in current_group]
     current_group = [str(member['number']) for member in current_group]
     print(current_group)
@@ -74,7 +78,7 @@ def create_group(current_group, group_index):
     dict['people'] = current_group #need to be references to the collection
     dict['confirmed'] = []
     dict['not_going'] = []
-    dict['activity'] = 'TODO' #need to be an activity
+    dict['activity'] = activity #need to be an activity
 
     print(dict)
 
