@@ -30,7 +30,7 @@
                         {% for other_person in other_people_status %}
                         <td>
                             <div class="ppl--details">{{ other_people_names[loop.index0]}}</div>
-                            <img class="headshots" src="../static/gen_human.jpeg" alt="human_1">
+                            <img class="headshots" src='{{src_list[loop.index0]}}' alt="human_1">
                             <div class="ppl--details"> {{ other_person }} </div>
                         </td>
                         {% endfor %}

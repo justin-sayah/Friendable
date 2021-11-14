@@ -259,8 +259,12 @@ def get_group(num):
     else:
         loc_name = activity['name']
         address = activity['address'][0]
+
+    create()
+
+    src_list = ['../static/human_' + str(i) + '.jpeg' for i in range(1,6)]
     
-    return render_template('results.html', other_people_status=other_people_status, other_people_names=other_people_names, loc_name=loc_name,address=address, status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
+    return render_template('results.html',src_list=src_list, other_people_status=other_people_status, other_people_names=other_people_names, loc_name=loc_name,address=address, status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
 
 @app.route('/test_show_person', methods=['GET'])
 def test_show_person():
@@ -300,7 +304,6 @@ def not_going():
 
     return get_group(number)
 
-@app.route('/human_maker')
 def create():
     print('making random avatars')
     for i in range(1,6):
