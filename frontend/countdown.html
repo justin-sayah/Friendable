@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Friendable | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+</head>
+
+<body style="background-color:#93AFD6" onload="document.body.style.opacity='1'">
+    <div class="header" style="color: white">Friendable</div>
+    <div class="instro--parent">
+        <div class="instro">time till next batch of results:</div>
+    </div>
+    <div class="time--till" id="countdown" style="color: white"></div>
+</body>
+
+<script>
+    var timeInSecs;
+    var ticker;
+
+    function startTimer(secs) {
+        timeInSecs = parseInt(secs);
+        ticker = setInterval("tick()", 1000);
+    }
+
+    function tick() {
+        var secs = timeInSecs;
+        if (secs > 0) {
+            timeInSecs--;
+        } else {
+            clearInterval(ticker);
+            startTimer(10080 * 60);
+        }
+
+        var days = Math.floor(secs / 86400);
+        secs %= 86400;
+        var hours = Math.floor(secs / 3600);
+        secs %= 3600;
+        var mins = Math.floor(secs / 60);
+        secs %= 60;
+        var pretty = ((days < 10) ? "0" : "") + days + ":" + ((hours < 10) ? "0" : "") + hours + ":" + ((mins < 10) ?
+            "0" : "") + mins + ":" + ((secs < 10) ? "0" : "") + secs;
+
+        document.getElementById("countdown").innerHTML = pretty;
+    }
+
+    startTimer(10); // Change this to time until 2:30pm sunday
+</script>
+
+</html>
