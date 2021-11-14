@@ -9,11 +9,14 @@ def i_love_data(filename):
 
     with open(filename) as f:
         for line in f:
-            line = line.replace('\n','').split(',')
-            vals = {'Name': line[0],'EF':line[1],'SI':line[2],'TF':line[3],'JP':line[4],'Cereal':line[5],'Hotdog':line[6],'Sleep':line[7],'IceCream':line[8],'Messy':line[9],'Aliens':line[10],'Classes':line[11]}
-            num = PhoneNumber('US').get_number()
-            print('[*] inserting ' + line[0] + ' with id ' + num)
-            users.document(num).set(vals)
+            try:
+                line = line.replace('\n','').split(',')
+                num = PhoneNumber('US').get_number()
+                vals = {'Name': line[0],'EF':float(line[1]),'SI':float(line[2]),'TF':float(line[3]),'JP':float(line[4]),'Cereal':int(line[5]),'Hotdog':int(line[6]),'Sleep':int(line[7]),'IceCream':int(line[8]),'Messy':int(line[9]),'Aliens':int(line[10]),'Classes':int(line[11]), 'Phone':num}
+                print('[*] inserting ' + line[0] + ' with id ' + num)
+                users.document(num).set(vals)
+            except:
+                continue
 
     print('<------- All Done :))) ------->')
 

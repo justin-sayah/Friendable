@@ -20,4 +20,5 @@ def get_events():
     print(events_results)
     return events_results
 
-get_events()
+x = get_events()
+print(x[0]['address'])

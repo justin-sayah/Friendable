@@ -20,9 +20,13 @@ boston = {
 
 loc = str(lat) + ',' + str(lon)
 
-radius = 2000
+radius = 800
 token = None 
+price = 2
 
-places = client.places_nearby(location=boston, radius=radius)
+places = client.places_nearby(location=boston, radius=radius, type='restaurant')
 
-print(places)
+print(places['results'][0]['name'])
+print(places['results'][0]['vicinity'])
+print(places['results'][0]['rating'])
+print(places['results'][0]['photos'])
