@@ -45,6 +45,7 @@
 
             <div class="results--containers">Attending?</div>
             <div>
+                {% if status=='maybe' %}
                 <form id="accept" method='POST' action="/going" >
                     <input type='text' id="pnum" name='pnum' value="{{ pnum }}" hidden=True/>
                     <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
@@ -55,6 +56,9 @@
                     <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
                     <button class="no">No</button>
                 </form>
+                {% else %}
+                    <h3>You said that you are {{ status }}</h3>
+                {% endif %}
             </div>
         </div>
 

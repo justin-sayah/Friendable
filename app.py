@@ -231,6 +231,13 @@ def get_group(num):
 
     group_id = group['group_id']
 
+    if pnum in group['confirmed']:
+        status = 'going'
+    elif pnum in group['not_going']:
+        status = 'not_going'
+    else:
+        status = 'maybe'
+
     print('other people')
     print(other_people)
     print('activity')
@@ -241,7 +248,7 @@ def get_group(num):
         obj = img.open(io.BytesIO(requests.get(activity['api_call']).content))
         obj.save('./static/place.jpeg')
     
-    return render_template('results.html', name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
+    return render_template('results.html', status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
 
 @app.route('/test_show_person', methods=['GET'])
 def test_show_person():
