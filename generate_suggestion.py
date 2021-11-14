@@ -1,5 +1,12 @@
 from serpapi import GoogleSearch
 import yaml, random, googlemaps
+from firebase_admin import credentials, firestore, initialize_app
+import uuid
+
+cred = credentials.Certificate("google_auth_creds.json")
+initialize_app(cred)
+db = firestore.client()
+
 
 creds = yaml.safe_load(open("creds.yaml", "r"))
 
@@ -50,8 +57,30 @@ def get_place():
 
 
 def gen_result():
+    dict = {}
     if bool(random.getrandbits(1)):
         result = get_event()
+        dict['type'] = result[0]
+        dict['name'] = result[1]
+        dict['date'] = result[2]
+        dict['address'] = result[3]
+        dict['thumbnail'] = result[4]
+
+        
     else:
         result = get_place()
-    return result
+        dict['type'] = result[0]
+        dict['name'] = result[1]
+        dict['vicinity'] = result[2]
+        dict['rating'] = result[3]
+        dict['photos'] = result[4]
+
+    activies = db.collection('activies')
+
+    id = str(uuid.uuid4())
+
+    dict['id'] = id
+
+    activies.document(str(id)).set(dict)
+
+    return id
