@@ -48,12 +48,12 @@
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             <img src="../static/place.jpeg" class="spot--photo">
                         </td>
                         <td class="results--containers" style="font-size: 18px;margin-top: 5%;text-align: left;">
-                            <div style="margin-top: 2%;">The Spot: {{TITLE}}</div>
-                            <div style="margin-top: 2%;">Location: {{ADDRESS}}</div>
+                            <div style="margin-top: 2%;">The Spot: {{ loc_name }}</div>
+                            <div style="margin-top: 2%;">Location: {{ address }}</div>
                             <div style="margin-top: 2%;">When: Saturday @ 1:00 PM GMT+5</div>
                         </td>
                     </tr>
@@ -73,8 +73,10 @@
                     <input type='text' id="group_id" name='group_id' value="{{ group_id }}" hidden=True/>
                     <button class="no">No</button>
                 </form>
+                {% elif status=='going' %}
+                <h3 class="results--containers">You said that you are going</h3>
                 {% else %}
-                    <h3 class="results--containers">You said that you are {{ status }}</h3>
+                <h3 class="results--containers">You said that you are not going</h3>
                 {% endif %}
             </div>
         </div>

@@ -1,5 +1,7 @@
 from flask import Flask, json, request, render_template, jsonify
 import os
+
+from numpy import add
 from send_sms import send_message
 from firebase_admin import credentials, firestore, initialize_app
 from Temp import Temp
@@ -247,8 +249,13 @@ def get_group(num):
         #make the api call
         obj = img.open(io.BytesIO(requests.get(activity['api_call']).content))
         obj.save('./static/place.jpeg')
+        loc_name = activity['name']
+        address = activity['vicinity']
+    else:
+        loc_name = activity['name']
+        address = activity['address'][0]
     
-    return render_template('results.html', status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
+    return render_template('results.html', loc_name=loc_name,address=address, status=status,name=name,group_id=group_id,pnum=pnum, person=user, other_people=other_people, activity=activity)
 
 @app.route('/test_show_person', methods=['GET'])
 def test_show_person():
