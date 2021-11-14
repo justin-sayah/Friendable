@@ -306,8 +306,10 @@ def not_going():
 
 def create():
     print('making random avatars')
+    import time
     for i in range(1,6):
         make_human(i)
+        time.sleep(1)
 
 
 
