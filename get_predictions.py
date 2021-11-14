@@ -21,13 +21,13 @@ def process_data(value_dict):
 
     I know I need to average
     '''
+    # {('number', '9788065553'), ('name', 'Conor Walsh'), ('q1', '7'), ('q2', '3'), ('q3', '9'), 
+    # ('q4', '2'), ('q5', '8'), ('q6', '8'), ('q7', '8'), ('q8', '8'), ('q9', '8'), ('q10', '3'), 
+    # ('q11', '6'), ('q12', '6'), ('13', '1'), ('14', '1'), ('15', '1'), ('16', '1'), ('17', '0'), ('18', '0')}
 
-    ret = []
-    for i in range(4):
-        total = 0
-        for j in range(3):
-            name = 'q' + str(3 * i + j)
-            total += value_dict[name]
+    preprocessed = list(value_dict.values())
+    preprocessed = preprocessed[2:]
+    print(preprocessed)
 
         
-    
+

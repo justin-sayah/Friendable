@@ -6,7 +6,7 @@ from Temp import Temp
 from User import User
 from flask import jsonify
 from random import randint
-
+import get_predictions
 
 
 
@@ -148,8 +148,11 @@ def survey():
     print(request.values)
     number = request.values['number']
 
+    process_data(request.values)
+
     # now put the values in the database
 
     users.document(number).set(request.values)
 
     print('inserted into database')
+
