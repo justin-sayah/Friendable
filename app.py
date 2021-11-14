@@ -183,7 +183,7 @@ def survey():
     print('inserted into database')
 
     # return render_template('results.html') #will probably make into a method
-    return get_group(number)
+    return render_template('countdown.html')
 
 def verify_phone(num):
     print('calling the verify method')

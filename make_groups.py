@@ -97,4 +97,4 @@ def create_group(current_group, group_index, class_num):
     groups.document(str(group_index) + str(class_num)).set(dict)
 
 # make_groups()
-get_group_object('9788065553')
+# get_group_object('9788065553')
