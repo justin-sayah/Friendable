@@ -29,7 +29,7 @@ def get_event():
     date = events_results[0]['date']
     address = events_results[0]['address']
     thumbnail = events_results[0]['thumbnail']
-    return [name, date, address, thumbnail]
+    return ['event', name, date, address, thumbnail]
 
 def get_place():
     api_key = creds['api_key']
@@ -46,7 +46,7 @@ def get_place():
     vicinity = places['results'][0]['vicinity']
     rating = places['results'][0]['rating']
     photos = places['results'][0]['photos']
-    return [name, vicinity, rating, photos]
+    return ['place', name, vicinity, rating, photos]
 
 
 def gen_result():
